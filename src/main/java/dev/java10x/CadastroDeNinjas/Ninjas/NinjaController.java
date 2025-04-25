@@ -1,9 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,17 @@ public class NinjaController {
     }
 
     @GetMapping
-    public List<NinjaModel> getAll(){
+    public List<NinjaModel> getAll() {
         return ninjaService.getAll();
+    }
+
+    @PostMapping
+    public NinjaModel create(@RequestBody NinjaModel ninja) {
+        return ninjaService.save(ninja);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        ninjaService.delete(id);
     }
 }
